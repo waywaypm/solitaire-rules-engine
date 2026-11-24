@@ -4,13 +4,16 @@ The rules of five solitaire games — Klondike, Spider, FreeCell, Pyramid and Yu
 JavaScript with no dependencies, no DOM and no framework. Every rule is also a test.
 
 **Live demo: <https://waywaypm.github.io/solitaire-rules-engine/>** — Klondike, played by the
-engines in `src/`, in a single page with no build step. The full site, with five more games
-and the rules behind them, is <https://games.appokk.com>.
+engines in `src/`, in a single page with no build step.
+
+This repository is the five *solitaire* games (Klondike, Spider, FreeCell, Pyramid, Yukon).
+The site it comes from also has Sudoku, 2048 and a typing test — different shapes of game, so
+they live there rather than here: <https://games.appokk.com>.
 
 ```bash
 npm test                    # all three suites
 node test/engine_test.js    # 54 assertions on the mechanics
-node test/rules_audit.js    # 106 assertions written as the games' published rules
+node test/rules_audit.js    # 60 assertions written as the games' published rules
 node test/vendor_sync.js    # the demo's copies still match src/
 ```
 
