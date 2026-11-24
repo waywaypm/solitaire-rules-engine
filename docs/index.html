@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>solitaire-rules-engine — live demo (Klondike)</title>
+<meta name="description" content="A playable Klondike demo built on solitaire-rules-engine: five solitaire rule sets as plain JavaScript, no dependencies, every rule asserted by a test.">
+<link rel="canonical" href="https://waywaypm.github.io/solitaire-rules-engine/">
+<style>
+  :root { --paper:#faf8f4; --ink:#17161a; --ink2:#5a5650; --line:#ddd6c9;
+           --accent:#cf3c22; --face:#fffdf9; --back:#2b3a55;
+           --w:62px; --h:88px; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink);
+         font:400 16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
+  .wrap { width:min(1000px,100% - 32px); margin-inline:auto; }
+  header { border-bottom:1px solid var(--line); }
+  header .wrap { display:flex; gap:16px; align-items:center; min-height:58px; flex-wrap:wrap; }
+  .brand { font-weight:700; letter-spacing:-.02em; }
+  .brand span { color:var(--accent); }
+  header a { color:var(--ink2); font-size:14px; text-decoration:none; margin-left:auto; }
+  header a:hover { color:var(--ink); text-decoration:underline; }
+  main { padding:28px 0 56px; }
+  h1 { font-size:clamp(24px,4vw,34px); margin:0 0 8px; letter-spacing:-.02em; }
+  .lede { color:var(--ink2); max-width:64ch; margin:0 0 20px; }
+  .bar { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:16px 0; }
+  button { font:inherit; font-size:14px; padding:7px 12px; border-radius:8px;
+           border:1px solid var(--line); background:var(--face); cursor:pointer; }
+  button:hover { border-color:var(--ink2); }
+  .status { font-size:14px; color:var(--ink2); }
+  .status b { color:var(--ink); font-variant-numeric:tabular-nums; }
+  .rail { display:flex; gap:10px; margin-bottom:14px; flex-wrap:wrap; }
+  .cols { display:flex; gap:10px; overflow-x:auto; padding-bottom:6px; }
+  .col { position:relative; width:var(--w); flex:0 0 auto; }
+  .slot { width:var(--w); height:var(--h); border-radius:10px; border:1px dashed var(--line);
+          background:#f2eee6; }
+  .card { position:relative; width:var(--w); height:var(--h); border-radius:10px;
+          background:var(--face); border:1px solid #cfc7b8; cursor:pointer; user-select:none;
+          display:flex; flex-direction:column; justify-content:space-between;
+          padding:4px 6px; font-size:15px; font-weight:700; line-height:1; }
+  .card + .card { margin-top:-60px; }
+  .card.down + .card { margin-top:-70px; }
+  .card.red { color:#c02a1c; } .card.black { color:var(--ink); }
+  .card.down { background:repeating-linear-gradient(135deg,var(--back) 0 6px,#35486a 6px 12px);
+               border-color:#22304a; color:transparent; }
+  .card.sel { transform:translateX(4px); box-shadow:0 0 0 3px var(--accent); }
+  .card .foot { align-self:flex-end; transform:rotate(180deg); font-size:12px; opacity:.75; }
+  .stock { position:relative; }
+  .count { position:absolute; right:-6px; bottom:-6px; font-size:11px; background:var(--ink);
+           color:var(--paper); border-radius:999px; padding:1px 6px; }
+  .note { border:1px solid var(--line); border-left:3px solid var(--accent); background:var(--face);
+          padding:12px 14px; border-radius:0 10px 10px 0; font-size:14px; margin:20px 0 0; }
+  footer { border-top:1px solid var(--line); padding:20px 0 40px; font-size:14px; color:var(--ink2); }
+  @media (max-width:720px){ :root{ --w:46px; --h:66px; } .card{ font-size:13px; } }
+</style>
+</head>
+<body>
+<header><div class="wrap">
+  <span class="brand">solitaire<span>.</span>rules<span>.</span>engine</span>
+  <a href="https://games.appokk.com/">Full site &rarr;</a>
+</div></header>
+<main><div class="wrap">
+  <h1>Live demo</h1>
+  <p class="lede">Klondike, played by the rules engine in this repository. The engine is
+     DOM-free — it deals, validates and scores; this page only draws the result. Every rule it
+     enforces is also a test (<code>test/rules_audit.js</code>).</p>
+
+  <div class="bar">
+    <button id="new">New deal</button>
+    <button id="undo">Undo</button>
+    <span class="status">Moves <b id="moves">0</b> &middot; Score <b id="score">0</b></span>
+  </div>
+
+  <div class="rail" id="rail"></div>
+  <div class="cols" id="tableau"></div>
+
+  <p class="note">Click a card to pick it up, click again to place it. Click the stock to draw.
+     Got a deal number? <code>?game=11982</code> replays the same cards — try
+     <a href="?game=11982">game 11982</a>.</p>
+</div></main>
+<footer><div class="wrap">
+  <a href="https://github.com/waywaypm/solitaire-rules-engine">Source</a> &middot;
+  <a href="https://games.appokk.com/">The full site, with five more games</a> &middot;
+  MIT
+</div></footer>
+<script src="vendor/cards.js"></script>
+<script src="vendor/klondike.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

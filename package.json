@@ -2,14 +2,34 @@
   "name": "solitaire-rules-engine",
   "version": "1.0.0",
   "description": "Rules engines for Klondike, Spider, FreeCell, Pyramid and Yukon solitaire. No dependencies, no DOM, every rule asserted by a test.",
-  "keywords": ["solitaire", "klondike", "spider", "freecell", "pyramid", "yukon", "cards", "game", "rules"],
+  "keywords": [
+    "solitaire",
+    "klondike",
+    "spider",
+    "freecell",
+    "pyramid",
+    "yukon",
+    "cards",
+    "game",
+    "rules"
+  ],
   "license": "MIT",
   "main": "src/cards.js",
-  "files": ["src", "test", "README.md", "LICENSE"],
+  "files": [
+    "src",
+    "test",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
-    "test": "node test/engine_test.js && node test/rules_audit.js"
+    "test": "node test/engine_test.js && node test/rules_audit.js && node test/vendor_sync.js"
   },
-  "repository": { "type": "git", "url": "git+https://github.com/waywaypm/solitaire-rules-engine.git" },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/waywaypm/solitaire-rules-engine.git"
+  },
   "homepage": "https://games.appokk.com",
-  "engines": { "node": ">=16" }
+  "engines": {
+    "node": ">=16"
+  }
 }
